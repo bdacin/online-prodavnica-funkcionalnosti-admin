@@ -18,9 +18,13 @@ const artikli = [
 // Selektori
 const tabela = document.querySelector("#artikli");
 const detalji = document.querySelector("#detalji");
+const forma = document.querySelector("#add-form");
+const inputNaziv = document.querySelector("#naziv");
+const inputCena = document.querySelector("#cena");
+const inputOpis = document.querySelector("#opis");
 
-// Popunjavanje tabele + klik
-for (let artikal of artikli) {
+// Funkcija za pravljenje jednog reda
+function napraviRed(artikal) {
     const tr = document.createElement("tr");
 
     const tdNaziv = document.createElement("td");
@@ -35,7 +39,7 @@ for (let artikal of artikli) {
     tr.appendChild(tdCena);
     tr.appendChild(tdOpis);
 
-    // Klik na red
+    // Klik na red 
     tr.addEventListener("click", function () {
         detalji.textContent =
             "Naziv: " + artikal.naziv +
@@ -43,14 +47,31 @@ for (let artikal of artikli) {
             ", Opis: " + artikal.opis;
     });
 
-    tabela.appendChild(tr);
+    return tr;
 }
+
+for (let artikal of artikli) {
+    tabela.appendChild(napraviRed(artikal));
+}
+
+forma.addEventListener("submit", function (e) {
+    e.preventDefault(); 
+
+    const naziv = inputNaziv.value;
+    const cena = inputCena.value;
+    const opis = inputOpis.value;
+
+    const noviArtikal = new Artikal(naziv, cena, opis);
+
+    tabela.appendChild(napraviRed(noviArtikal));
+
+    forma.reset();
+});
 
 
 // Tabela
 tabela.style.border = "1px solid black";
 tabela.style.borderCollapse = "collapse";
-
 
 const cells = tabela.querySelectorAll("th, td");
 cells.forEach(cell => {
@@ -58,7 +79,6 @@ cells.forEach(cell => {
 });
 
 // Forma – plavi okvir
-const forma = document.querySelector("#add-form");
 if (forma) {
     forma.style.border = "2px solid blue";
     forma.style.padding = "10px";
