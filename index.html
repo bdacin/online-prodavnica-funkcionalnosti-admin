@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <title>Artikli</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h2 class="naslov">Artikli</h2>
+    <hr>
+
+    <!--TABELA-->
+
+    <table id="artikli">
+        <tr>
+            <th>Jedinstven broj</th>
+            <th>Naziv</th>
+            <th>Cena</th>
+            <th>Dostupnost</th>
+        </tr>
+    </table>
+
+    <hr>
+
+    <!-- DETALJI ARTIKLA -->
+    <h3>Detalji artikla</h3>
+    <p id="detalji">Kliknite na artikal iz tabele</p>
+
+    <hr>
+
+    <!--FORMA -->
+    <h3>Dodaj novi artikal</h3>
+
+    <form id="add-form">
+        <label>
+            Naziv:<br>
+            <input type="text" id="naziv" required>
+        </label>
+        <br><br>
+
+        <label>
+            Cena:<br>
+            <input type="number" id="cena" required>
+        </label>
+        <br><br>
+
+        <label>
+            Opis:<br>
+            <textarea id="opis" required></textarea>
+        </label>
+        <br><br>
+
+        <button type="submit">Dodaj</button>
+    </form>
+
+    <script src="example.js"></script>
+</body>
+</html>
