@@ -1,7 +1,6 @@
 'use strict';
 
 // Klasa i niz artikala
-
 class Artikal {
     constructor(naziv, cena, opis) {
         this.naziv = naziv;
@@ -16,10 +15,11 @@ const artikli = [
     new Artikal("Miš", 20, "Bežični optički miš")
 ];
 
-// Popunjavanje tabele
-
+// Selektori
 const tabela = document.querySelector("#artikli");
+const detalji = document.querySelector("#detalji");
 
+// Popunjavanje tabele + klik
 for (let artikal of artikli) {
     const tr = document.createElement("tr");
 
@@ -35,20 +35,29 @@ for (let artikal of artikli) {
     tr.appendChild(tdCena);
     tr.appendChild(tdOpis);
 
+    // Klik na red
+    tr.addEventListener("click", function () {
+        detalji.textContent =
+            "Naziv: " + artikal.naziv +
+            ", Cena: " + artikal.cena +
+            ", Opis: " + artikal.opis;
+    });
+
     tabela.appendChild(tr);
 }
 
 
-// Tabela borders
+// Tabela
 tabela.style.border = "1px solid black";
 tabela.style.borderCollapse = "collapse";
+
 
 const cells = tabela.querySelectorAll("th, td");
 cells.forEach(cell => {
     cell.style.border = "1px solid black";
 });
 
-// Forma plavi okvir
+// Forma – plavi okvir
 const forma = document.querySelector("#add-form");
 if (forma) {
     forma.style.border = "2px solid blue";
@@ -56,8 +65,7 @@ if (forma) {
     forma.style.width = "fit-content";
 }
 
-// Detalji crveni okvir
-const detalji = document.querySelector("#detalji");
+// Detalji – crveni okvir
 if (detalji) {
     detalji.style.border = "2px solid red";
     detalji.style.padding = "10px";
