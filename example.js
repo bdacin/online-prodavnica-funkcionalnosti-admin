@@ -9,11 +9,10 @@ class Artikal {
     }
 }
 
-const artikli = [
-    new Artikal("Monitor", 165, "24 inča, IPS panel"),
-    new Artikal("TV", 650, "55 inča, Smart TV"),
-    new Artikal("Miš", 20, "Bežični optički miš")
-];
+let artikli= [];
+if (localStorage.getItem("artikli")){
+    artikli=JSON.parse(localStorage.getItem("artikli"));
+}
 
 // Selektori
 const tabela = document.querySelector("#artikli");
@@ -61,9 +60,10 @@ forma.addEventListener("submit", function (e) {
     const cena = inputCena.value;
     const opis = inputOpis.value;
 
-    const noviArtikal = new Artikal(naziv, cena, opis);
-
+    const noviArtikal=new Artikal(naziv,cena,opis);
+    artikli.push(noviArtikal);
     tabela.appendChild(napraviRed(noviArtikal));
+    localStorage.setItem("artikli",JSON.stringify(artikli));
 
     forma.reset();
 });
